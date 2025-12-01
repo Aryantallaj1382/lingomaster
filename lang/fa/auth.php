@@ -1,0 +1,24 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used during authentication for various
+    | messages that we need to display to the user. You are free to modify
+    | these language lines according to your application's requirements.
+    |
+    */
+
+    'failed' => 'اطلاعات وارد شده غلط می‌باشد.',
+    'password' => 'رمز عبور ارائه شده نادرست است.',
+    'throttle' => 'تعداد تلاش های ناموفق زیاد بود . لطفا بعد از :seconds ثانیه ی دیگر تلاش کنید .',
+    'unauthenticated' => 'لطفاً ابتدا وارد حساب کاربری خود شوید.',
+    'unauthorized' => 'شما اجازه دسترسی به این بخش را ندارید.',
+    'not_found' => 'موردی یافت نشد.',
+    'Server Error' => 'مشکلی پیش آمده.',
+
+];

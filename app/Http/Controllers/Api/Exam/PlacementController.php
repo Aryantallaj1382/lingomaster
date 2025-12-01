@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers\Api\Exam;
+
+use App\Http\Controllers\Controller;
+use App\Models\AgeGroup;
+use App\Models\Exam;
+use App\Models\Professors\LanguageLevel;
+use App\Models\Professors\Skill;
+use Illuminate\Http\Request;
+
+class PlacementController extends Controller
+{
+    public function info()
+    {
+        $skills = Skill::all();
+        $level = LanguageLevel::where('id' ,'!=' ,'4')->get();
+        return api_response([
+            'skills' => $skills,
+            'level' => $level,
+        ]);
+
+    }
+
+    public function placement(Request $request)
+    {
+        $user = auth()->user()->student;
+        $age = $user->age_group;
+
+        $level = $request->level_id;
+        $skills = $request->skill_id;
+        $lan = $request->language;
+        $exam = Exam::where('language_level_id', $level)->where('skill_id', $skills)->where('language_id' , $lan)->first();
+
+        if (!$exam) {
+            return api_response([],'exam not found', 422);
+        }
+        return api_response(['id'=>$exam->id]);
+    }
+}
