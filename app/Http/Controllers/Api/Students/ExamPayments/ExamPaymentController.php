@@ -28,8 +28,8 @@ class ExamPaymentController extends Controller
     public function showExamPayment(int $id)
     {
         $ExamPayment = ExamPayment::findOrFail($id);
-
-        $totalToman = convert($ExamPayment->DollarPrice);
+        $dolar = SystemSetting::where('name', 'dolar_price')->value('value');
+        $totalToman = $ExamPayment->DollarPrice * $dolar;
         $total = $totalToman + $ExamPayment->tax + $ExamPayment->wage;
         return api_response([
             'image' => $ExamPayment->image,

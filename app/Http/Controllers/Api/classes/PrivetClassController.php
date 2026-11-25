@@ -2326,6 +2326,7 @@ class PrivetClassController extends Controller
     {
         $professor_id = $id;
         $student_id = auth()->user()->student->id;
+        $student_age = auth()->user()->student->age_group_student;
         $beforeDash = Str::beforeLast($request1->address_id, '-');
         $afterDash = Str::afterLast($request1->address_id, '-');
 
@@ -2338,7 +2339,6 @@ class PrivetClassController extends Controller
         $request = $request1->validate([
             'teaching_types' => 'required',
             'language' => 'required',
-            'ageGroup' => 'required',
             'level' => 'required',
             'address_id' => 'nullable',
             'address_type' => 'nullable',
@@ -2394,7 +2394,10 @@ class PrivetClassController extends Controller
             $file->move(public_path('uploads/evidences'), $fileName);
             $evidencePath = 'uploads/evidences/' . $fileName;
         }
-
+        if (!$student_age)
+        {
+            return api_response([],'لطفا در پروفایل سن خود را تعیین کنید');
+        }
 
         $R = PrivetClassReservation::create([
             'professor_id' => $professor_id,
@@ -2402,7 +2405,7 @@ class PrivetClassController extends Controller
             'teaching_type_id' => $request1->input('teaching_types'),
             'affordable_type' => $request1->input('offer'),
             'language_id' => $request1->input('language'),
-            'age_group_id' => $request1->input('ageGroup'),
+            'age_group_id' => $student_age ?? 1,
             'language_level_id' => $request1->input('level'),
             'skill_id' => $request1->input('skill'),
             'subject_id' => $request1->input('subject_id'),

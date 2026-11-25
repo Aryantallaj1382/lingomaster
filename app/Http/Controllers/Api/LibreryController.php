@@ -103,6 +103,7 @@ class LibreryController extends Controller
             'rate_count' => $product->ratings_count,
             'rate' => $product->user_rating,
             'author' => $product->author,
+            'isSchool' => $product->isSchool ?? 0,
             'Volume_number' => $product->Volume_number,
             'page_number' => $product->page_number,
             'age_group' => $product->age_group->title ?? null,

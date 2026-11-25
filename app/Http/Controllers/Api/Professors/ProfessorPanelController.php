@@ -424,7 +424,8 @@ class ProfessorPanelController extends Controller
 
 
         $address = $professor->addresses()->first();
-
+        $professor->is_inside = $request->country_id == 1 ? 1 : 0;
+        $professor->save();
         if (!$address) {
             $address = $professor->addresses()->create($validated);
             return api_response([], 'آدرس جدید برای پروفسور ایجاد شد.');

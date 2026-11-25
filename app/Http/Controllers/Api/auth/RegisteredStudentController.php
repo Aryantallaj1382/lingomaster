@@ -34,7 +34,7 @@ class RegisteredStudentController extends Controller
             'email' => 'nullable|string|email|max:255|unique:' . User::class . ',email',
             'mobile' => 'nullable|digits:11|ir_mobile:zero|unique:' . User::class . ',mobile',
             'password' => 'required',
-            'date_of_birth' => 'nullable|date',
+            'date_of_birth' => 'required|date',
         ]);
 
         if (!isset($request->mobile, $request->otp)) {

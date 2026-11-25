@@ -73,7 +73,6 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlacementController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\TicketController;
 use App\Http\Controllers\WalletController;
 use App\Models\Blog;
 use App\Models\News;
